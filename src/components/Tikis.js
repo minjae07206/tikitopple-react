@@ -22,5 +22,5 @@ function Tikis () {
         </div>
     )
 }
-
+///
 export default Tikis;
