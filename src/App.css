@@ -1,3 +1,35 @@
+.cards {
+  display: flex;
+  justify-content: space-around;
+}
+
+.card {
+  border: 1px solid grey;
+  width: 10%;
+  height: 30px;
+}
+.top-layout {
+  display: flex;
+  justify-content: space-around;
+}
+
+.current-choice {
+  border: 3px dotted black;
+  padding-top: 50px;
+}
+.tiki {
+  width: 90px;
+  height: 50px;
+  margin: 10px auto;
+  border-radius: 10px;
+  padding: 30px;
+}
+
+.tikis {
+  display: flex;
+  flex-direction: column;
+}
+
 .App {
   text-align: center;
 }
