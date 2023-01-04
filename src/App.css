@@ -2,7 +2,10 @@
   display: flex;
   justify-content: space-around;
 }
-
+.new-game-btn {
+  height: 50px;
+  margin-top: 50px;
+}
 .card {
   border: 1px solid grey;
   width: 10%;
