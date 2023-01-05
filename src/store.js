@@ -26,29 +26,30 @@ let tikis = createSlice({
         shuffle(category1);
         shuffle(category2);
         shuffle(category3);
-        shuffle(newGame)
-        //const temp = [category1, category2, category3]
-        /*for (let i=0; i < 3; i++){
-          let random = Math.floor(Math.random() * temp.length);
-          let popped = temp.splice(random, 1);
-          popped = popped[0];
-          newGame.push(popped)
-        } */
+        shuffle(newGame);  
         newGame = newGame[0].concat(newGame[1], newGame[2]);
         console.log(newGame)
         return newGame;
-      }
+      },
+
     }
 })
 
 let cards = createSlice({
     name: 'cards',
     initialState: cardsState,
+    reducers: {
+      removeCard(state, cardDelete){
+        const indexOfCard = state.indexOf(cardDelete.payload);
+        state.splice(indexOfCard, 1)
+        return state;
+      }
+    }
 })
 
 let turnState = createSlice({
   name: 'turnState',
-  initialState: ["N/A", "N/A"],
+  initialState: ["None", "None"],
   reducers: {
     setTiki(state, tiki) {
       state[1] = tiki.payload;
@@ -56,6 +57,9 @@ let turnState = createSlice({
     setCard(state, card) {
       state[0] = card.payload;
     },
+    resetTurnState() {
+      return ['None', 'None'];
+    }
   }
 })
 
@@ -67,5 +71,6 @@ export default configureStore({
    }
 }) 
 
-export let {setTiki, setCard}  = turnState.actions;
+export let {setTiki, setCard, resetTurnState}  = turnState.actions;
 export let {setNewGame} = tikis.actions;
+export let {removeCard} = cards.actions;

@@ -12,7 +12,7 @@ function Game () {
             <div class="top-layout">
                 <Button className='new-game-btn' onClick={()=>{
                     dispatch(setNewGame());
-                }}>New Game</Button>
+                }}>New Round</Button>
                 <Tikis></Tikis>
                 <CurrentChoice></CurrentChoice>
             </div>
