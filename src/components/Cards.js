@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import {Button} from 'react-bootstrap';
-import {setCard, setTiki} from '../store.js'
+import {setCard, setTiki, checkError} from '../store.js'
 function Cards() {
     let dispatch = useDispatch();
     let state = useSelector((state) => { return state });
@@ -11,13 +11,12 @@ function Cards() {
                     return (
                         <Button variant="primary" onClick={()=>{
                             dispatch(setCard(card));
-                            if (card === "toast") {
-                                dispatch(setTiki(state.tikis[state.tikis.length-1].name))
-                            }
+                            dispatch(checkError(state.tikis));
                         }}>{card}</Button>
                     )
                 })
             }
+            <div>{state.turnState.errorMessage}</div>
         </div>
     )
 }
