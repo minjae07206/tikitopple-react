@@ -46,8 +46,10 @@ let tikis = createSlice({
           break;
         case '1up':
           index = state.indexOf(state.find((tiki) => { if (tiki.name === tikiNow) { return tiki } }));
+          console.log(index)
           popped = state.splice(index, 1);
-          state.splice(index - 1, 0, popped[0]);
+          console.log(popped[0].name)
+          state.splice(index-1, 0, popped[0]);
           break;
         case '2up':
           index = state.indexOf(state.find((tiki) => { if (tiki.name === tikiNow) { return tiki } }));

@@ -3,10 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import {moveTiki, removeCard, resetTurnState} from '../store.js'
 import axios from 'axios';
 import io from 'socket.io-client';
+import { useEffect } from 'react';
 const socket = io();
-socket.on('turn-data', (data)=>{
-    console.log(data)
-})
+
 function CurrentChoice() {
     let state = useSelector((state)=>{return state});
     let dispatch = useDispatch();
@@ -16,6 +15,10 @@ function CurrentChoice() {
     } else{
         setDisabled = false;
     }
+    useEffect(()=>{socket.on('turn-data', (data)=>{
+        console.log(data)
+        dispatch(moveTiki(data));
+    })}, [])
     return (
         <div class="current-choice">
             <h4>Card Chosen:{state.turnState.cardNow}</h4>
@@ -24,7 +27,6 @@ function CurrentChoice() {
                 socket.emit('turn-data', state.turnState);
                 dispatch(resetTurnState());  
                 dispatch(removeCard(state.turnState.cardNow));
-                dispatch(moveTiki(state.turnState))
                 }}>Submit</button>
         </div>
 
